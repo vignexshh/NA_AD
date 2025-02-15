@@ -89,10 +89,13 @@ const App: React.FC = () => {
       <Flex gap="middle" vertical>
         {/* Filters Card */}
         <Card title="Available Filters & Data Tweaks">
-          <Space direction="vertical" size={16} style={{ width: "100%" }}>
-            {/* Allotted Quota */}
+          <Space direction="vertical" style={{ width: "100%"  , overflowX: "auto"  }} >
+          <div className="choice-01 flex allign-center "> 
+           
+            <p className="font-bold pr-5 md:pr-10"> NEET Quota: </p>
             <Select
-              mode="multiple"
+              // mode="multiple"
+              // maxTagCount={'responsive'}
               allowClear
               placeholder="Select Allotted Quota"
               value={filters.allottedQuota}
@@ -101,10 +104,15 @@ const App: React.FC = () => {
                 value: quota,
                 label: quota,
               }))}
-              style={{ width: "100%" }}
+              // style={{ width: "100%" }}
             />
+             </div>
+            
 
             {/* Allotted Institute */}
+            <div className="choice-01 flex allign-center "> 
+           
+            <p className="font-bold pr-5 md:pr-10"> NEET Quota: </p>
             <Select
               showSearch
               allowClear
@@ -115,12 +123,16 @@ const App: React.FC = () => {
                 value: institute,
                 label: institute,
               }))}
-              style={{ width: "100%" }}
+              
             />
+           
+            
+
 
             {/* Course */}
             <Select
               mode="multiple"
+              maxTagCount={'responsive'}
               allowClear
               placeholder="Select Course"
               value={filters.course}
@@ -131,6 +143,8 @@ const App: React.FC = () => {
               }))}
               style={{ width: "100%" }}
             />
+            </div>
+
 
             {/* Allotted Category */}
             <Select
@@ -159,20 +173,25 @@ const App: React.FC = () => {
               }))}
               style={{ width: "100%" }}
             />
+
+<Button danger type="primary" onClick={clearFilters} style={{ marginBottom: 16 }}>
+              Clear All Filters
+            </Button>
+            
           </Space>
+
         </Card>
 
         {/* Data Table Card */}
         <Card>
-          <div>
-            <Button type="primary" onClick={clearFilters} style={{ marginBottom: 16 }}>
-              Clear All Filters
-            </Button>
+        <div style={{ overflowX: "auto" }}>
+            
             <Table
               dataSource={filteredData}
               columns={columns}
               rowKey="SNo"
               pagination={{ pageSize: 10 }}
+              style={{ minHeight: 100}}
             />
           </div>
         </Card>
