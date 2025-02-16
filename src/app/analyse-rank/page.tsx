@@ -91,24 +91,28 @@ const App: React.FC = () => {
       <Flex gap="middle" vertical>
         {/* Filters Card */}
         <Card title="Available Filters & Data Tweaks">
-          <div className="flex flex-col md:flex-row gap-2 pb-5">
-            <Space direction="vertical" style={{ width: "100%", overflowX: "auto" }}>
-              {/* Max Rank Input */}
-              <div className="choice-01 flex items-center gap-2">
-                <p className="font-bold pr-5 md:pr-10">Max Rank:</p>
+          
+            
+
+          
+
+          <div className="flex flex-col w-full">
+            {/* manage_column */}
+            <div className="flex flex-col md:flex-row w-full border-t-2  gap-0 md:gap-20 "> 
+              {/* column_01 */}
+              <div className="pt-5 pb-5 flex flex-row items-center gap-5">
+                <p className="font-bold"> Max Rank: </p>
                 <InputNumber
                   placeholder="Enter Max Rank"
                   value={filters.maxRank}
                   onChange={(value) => handleFilterChange("maxRank", value)}
                   min={1} // Minimum rank is 1
-
-
                 />
-              </div>
 
-              {/* Allotted Quota */}
-              <div className="choice-01 flex items-center gap-2">
-                <p className="font-bold pr-5 md:pr-10">Quota:</p>
+              </div>
+              {/* column_02 */}
+              <div className=" flex flex-row items-center gap-5">
+                <p className="font-bold"> NEET Quota: </p>
                 <Select
                   allowClear
                   placeholder="Select Allotted Quota"
@@ -119,45 +123,16 @@ const App: React.FC = () => {
                     label: quota,
                   }))}
                 />
+
               </div>
 
-              {/* Allotted Institute */}
-              <div className="choice-01 flex items-center gap-2">
-                <p className="font-bold pr-5 md:pr-10">College:</p>
-                <Select
-                  showSearch
-                  allowClear
-                  placeholder="Select Allotted Institute"
-                  value={filters.allottedInstitute}
-                  onChange={(value) => handleFilterChange("allottedInstitute", value)}
-                  options={uniqueValues.allottedInstitute.map((institute) => ({
-                    value: institute,
-                    label: institute,
-                  }))}
-                  style={{ width: "100%" }}
-                />
-              </div>
+              
 
-              {/* Course */}
-              <div className="choice-01 flex items-center gap-2">
-                <p className="font-bold pr-5 md:pr-10">Course:</p>
-                <Select
-                  allowClear
-                  placeholder="Select Course"
-                  value={filters.course}
-                  onChange={(value) => handleFilterChange("course", value)}
-                  options={uniqueValues.course.map((course) => ({
-                    value: course,
-                    label: course,
-                  }))}
-                />
-              </div>
-            </Space>
-
-            <Space direction="vertical" style={{ width: "100%", overflowX: "auto" }}>
-              {/* Allotted Category */}
-              <div className="choice-01 flex items-center gap-2">
-                <p className="font-bold pr-5 md:pr-10">Category:</p>
+            </div>
+            <div className="flex flex-col md:flex-row w-full border-t-2 border-b-2 gap-0 md:gap-20 "> 
+              {/* column_01 */}
+              <div className="pt-5 pb-5 flex flex-row items-center gap-5">
+                <p className="font-bold"> A-Category: </p>
                 <Select
                   showSearch
                   allowClear
@@ -168,13 +143,34 @@ const App: React.FC = () => {
                     value: category,
                     label: category,
                   }))}
-                  style={{ width: "100%" }}
+                  />
+
+              </div>
+              {/* column_02 */}
+              <div className=" flex flex-row items-center gap-5">
+                <p className="font-bold"> College: </p>
+                <Select
+                  showSearch
+                  
+                  allowClear
+                  placeholder="Select Allotted Institute"
+                  value={filters.allottedInstitute}
+                  onChange={(value) => handleFilterChange("allottedInstitute", value)}
+                  options={uniqueValues.allottedInstitute.map((institute) => ({
+                    value: institute,
+                    label: institute,
+                  }))}
                 />
+
               </div>
 
-              {/* Candidate Category */}
-              <div className="choice-01 flex items-center gap-2">
-                <p className="font-bold pr-5 md:pr-10">Candidate_Category:</p>
+              
+
+            </div>
+            <div className="flex flex-col md:flex-row w-full border-b-2 gap-0 md:gap-20 "> 
+              {/* column_01 */}
+              <div className="pt-5 pb-5 flex flex-row items-center gap-5">
+                <p className="font-bold"> Candidate Category: </p>
                 <Select
                   showSearch
                   allowClear
@@ -187,19 +183,33 @@ const App: React.FC = () => {
                   }))}
                   style={{ width: "100%" }}
                 />
-              </div>
-            </Space>
-          </div>
 
+              </div>
+              {/* column_02 */}
+              <div className=" flex flex-row items-center gap-5">
+                <p className="font-bold"> Course: </p>
+                <Select
+                  allowClear
+                  placeholder="Select Course"
+                  value={filters.course}
+                  onChange={(value) => handleFilterChange("course", value)}
+                  options={uniqueValues.course.map((course) => ({
+                    value: course,
+                    label: course,
+                  }))}
+                />
+
+              </div>
+
+              
+
+            </div>
+            
+          </div>
           <Button danger type="primary" onClick={clearFilters} style={{ marginBottom: 16 }}>
             Clear All Filters
           </Button>
 
-        <div className="flex flex-col w-full"> 
-          <div className="pt-5 pb-5 border-black border-2 "> <p> s x s</p> </div> 
-          
-          </div>       
-         
 
         </Card>
 
