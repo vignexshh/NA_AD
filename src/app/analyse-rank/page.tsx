@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Flex, Radio, Card, Space, Select, Button, Table, InputNumber } from "antd";
 import type { ColumnsType } from "antd/es/table";
+import CustomCard from "@/components/CustomCard";
 // Import JSON file (adjust path as needed)
 import data from "./2_ALL INDIA QUOTA AYUSH ROUND-1 ALLOTMENTS.json";
 
@@ -226,6 +227,7 @@ const App: React.FC = () => {
           </div>
         </Card>
       </Flex>
+      <CustomCard title="My Custom Card" />
     </div>
   );
 };
