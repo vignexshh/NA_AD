@@ -10,16 +10,26 @@ interface CustomCardProps {
 
 const CustomCard: React.FC<CustomCardProps> = ({ title }) => {
   // State to track if the screen is in mobile view
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768); // Define breakpoint for mobile (e.g., 768px)
+  const [isMobile, setIsMobile] = useState(false);
 
   // Effect to handle window resize events
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
+      setIsMobile(window.innerWidth < 768); // Define breakpoint for mobile (e.g., 768px)
     };
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    // Check if window is defined (i.e., code is running in the browser)
+    if (typeof window !== 'undefined') {
+      handleResize(); // Set initial state
+      window.addEventListener('resize', handleResize);
+    }
+
+    // Cleanup event listener on component unmount
+    return () => {
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('resize', handleResize);
+      }
+    };
   }, []);
 
   // Dynamic grid style based on screen size
@@ -37,16 +47,16 @@ const CustomCard: React.FC<CustomCardProps> = ({ title }) => {
   return (
     <Card title={title}>
       {/* First Row */}
-      <Card.Grid style={gridStyle}>Item 1</Card.Grid>
-      <Card.Grid style={gridStyle}>Item 2</Card.Grid>
+      <Card.Grid hoverable={false} style={gridStyle}>Item 1</Card.Grid>
+      <Card.Grid hoverable={false} style={gridStyle}>Item 2</Card.Grid>
 
       {/* Second Row */}
-      <Card.Grid style={gridStyle}>Item 3</Card.Grid>
-      <Card.Grid style={gridStyle}>Item 4</Card.Grid>
+      <Card.Grid hoverable={false} style={gridStyle}>Item 3</Card.Grid>
+      <Card.Grid hoverable={false} style={gridStyle}>Item 4</Card.Grid>
 
       {/* Third Row */}
-      <Card.Grid style={gridStyle}>Item 5</Card.Grid>
-      <Card.Grid style={gridStyle}>Item 6</Card.Grid>
+      <Card.Grid hoverable={false} style={gridStyle}>Item 5</Card.Grid>
+      <Card.Grid hoverable={false} style={gridStyle}>Item 6</Card.Grid>
     </Card>
   );
 };
