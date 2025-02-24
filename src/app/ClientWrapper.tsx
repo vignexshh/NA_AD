@@ -1,8 +1,8 @@
-"use client"; // Mark this file as a Client Component
+"use client"; 
 import React from 'react';
-import '@ant-design/v5-patch-for-react-19'; // Compatibility package for React 19
-import { unstableSetRender } from 'antd'; // Fallback for special scenarios
-import { createRoot } from 'react-dom/client'; // Client-side rendering API
+import '@ant-design/v5-patch-for-react-19';  
+import { unstableSetRender } from 'antd';  
+import { createRoot } from 'react-dom/client';  
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 
 unstableSetRender((node, container) => {
@@ -18,7 +18,7 @@ unstableSetRender((node, container) => {
     };
   });
   
-  // ClientWrapper component
+ 
   export default function ClientWrapper({ children }: React.PropsWithChildren) {
     console.log('ClientWrapper rendered');
     return <AntdRegistry>{children}</AntdRegistry>;

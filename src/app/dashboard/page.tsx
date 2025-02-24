@@ -65,7 +65,16 @@ const Page: React.FC = () => {
     return (
       <Card title={title}>
         {/* First Row */}
-        <Card.Grid hoverable={false} style={gridStyle}>Item 1</Card.Grid>
+        <Card.Grid hoverable={false} style={gridStyle}><div className="pt-5 pb-5 flex flex-row items-center gap-5">
+                <p className="font-bold">Max Rank:</p>
+                <InputNumber
+                  placeholder="Enter Max Rank"
+                  value={filters.maxRank}
+                  onChange={(value) => handleFilterChange("maxRank", value)}
+                  min={1} // Minimum rank is 1
+        
+                />
+              </div></Card.Grid>
         <Card.Grid hoverable={false} style={gridStyle}>Item 2</Card.Grid>
 
         {/* Second Row */}
@@ -194,7 +203,7 @@ const Page: React.FC = () => {
           </div>
         </Card>
         {/* Custom Card */}
-        <CustomCard title="My Custom Card" />
+        <CustomCard title="Data Tweaks" />
       </Flex>
     </div>
   );
