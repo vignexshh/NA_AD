@@ -153,8 +153,8 @@ const Page: React.FC = () => {
 
         {/* Data Table Card */}
         {selectedFile && (
-          <Card>
-            <div style={{ overflowX: "auto" }}>
+          <div >
+            <div style={{ overflowX: "auto"  }}>
               <Table
                 dataSource={filteredData}
                 columns={Object.keys(jsonData[0] || {}).map((key) => ({
@@ -167,7 +167,7 @@ const Page: React.FC = () => {
                 style={{ minHeight: 100 }}
               />
             </div>
-          </Card>
+          </div>
         )}
       </Flex>
     </div>
