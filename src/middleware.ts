@@ -1,17 +1,20 @@
 // middleware.ts
-import { NextResponse } from 'next/server';
-import { auth } from '@/lib/firebase';
+import { NextResponse } from "next/server";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
-export async function middleware(request: any) {
-  const user = auth.currentUser;
+export async function middleware(request: Request) {
+  const auth = getAuth();
+  const user = await new Promise((resolve) => {
+    onAuthStateChanged(auth, (user) => resolve(user));
+  });
 
-  if (!user && request.nextUrl.pathname.startsWith('/dashboard')) {
-    return NextResponse.redirect(new URL('/', request.url));
+  if (!user && new URL(request.url).pathname.startsWith("/dashboard/rank-exp")) {
+    return NextResponse.redirect(new URL("/", request.url));
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ['/dashboard/:path*'], // Protect all routes under /dashboard
+  matcher: ["/dashboard/:path*"],
 };

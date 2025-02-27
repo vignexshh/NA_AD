@@ -1,6 +1,7 @@
-// lib/firebase.ts
-import { initializeApp, getApps, getApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+
+// lib/firebaseConfig.ts
+import { initializeApp } from "firebase/app";
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -11,8 +12,6 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
-// Initialize Firebase only once
-const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
-const auth = getAuth(app);
-
-export { auth };
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+export const googleProvider = new GoogleAuthProvider();
